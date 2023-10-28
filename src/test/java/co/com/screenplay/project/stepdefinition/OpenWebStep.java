@@ -1,19 +1,21 @@
 package co.com.screenplay.project.stepdefinition;
 
+import co.com.screenplay.project.tasks.AddAnElementToCart;
+import co.com.screenplay.project.tasks.SelectAnItem;
+import co.com.screenplay.project.tasks.ValidateElements;
 import co.com.screenplay.project.utils.Time;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
-import net.thucydides.core.util.EnvironmentVariables;
 import co.com.screenplay.project.hook.OpenWeb;
 
-import static co.com.screenplay.project.utils.Constants.TIME_SHORT;
-import static co.com.screenplay.project.utils.Constants.TITLE;
+import static co.com.screenplay.project.ui.HomeUI.*;
+import static co.com.screenplay.project.utils.Constants.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.core.StringContains.containsString;
@@ -40,25 +42,23 @@ public class OpenWebStep {
 
     @Given("desea validar la funcion de la carta de elementos")
     public void wantsToValidateTheFuncionOfTheItemsCard() {
-        // Código para validar la función de la carta de elementos
-        throw new io.cucumber.java.PendingException();
+        OnStage.theActorCalled(ACTOR).attemptsTo(ValidateElements.toBeVisible(LOVE_CATEGORY) );
     }
 
     @When("selecciona un elemento")
     public void selectAnItem() {
-        // Código para seleccionar un elemento
-        throw new io.cucumber.java.PendingException();
+        OnStage.theActorCalled(ACTOR).attemptsTo(SelectAnItem.on(FIRST_ELEMENT));
     }
 
     @When("agrega un elemento mas al carrito")
     public void addsOneMoreItemToCart() {
-        // Código para agregar un elemento más al carrito
-        throw new io.cucumber.java.PendingException();
+        OnStage.theActorCalled(ACTOR).attemptsTo(AddAnElementToCart.toBeVisible(BTN_PLUS_ELEMENT_TO_CART));
     }
 
     @Then("visualizara en el carrito los elementos seleccionados")
     public void willSeeTheSelectedItems() {
-        // Código para verificar los elementos seleccionados en el carrito
-        throw new io.cucumber.java.PendingException();
+        OnStage.theActorCalled(ACTOR).attemptsTo(
+                Click.on(BTN_CART)
+        );
     }
 }
